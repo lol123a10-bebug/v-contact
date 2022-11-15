@@ -6,4 +6,9 @@ type TContact = {
   tags: string[];
 };
 
-export type { TContact };
+type TContactTag = {
+  label: string;
+  value: string;
+};
+
+export type { TContact, TContactTag };
