@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { NCard, NGrid, NGridItem, NDynamicTags, NButton, NTag, NPopconfirm, NText, NSelect } from "naive-ui";
+import { NCard, NGrid, NGridItem, NDynamicTags, NButton, NTag, NPopconfirm, NText, NSelect, NModal } from "naive-ui";
 import { mockContacts } from "@/utils/__mock/__mock-contacts";
 import { mockTags } from "@/utils/__mock/__mock-tags";
+
+import ContactForm from "@/components/ContactForm.vue";
+
+const createShowed = ref(false);
 
 const tags = ref(mockTags);
 
@@ -22,7 +26,13 @@ const filteredContacts = computed(() => {
 <template>
   <div class="home">
     <header class="header">
-      <NButton type="info">Create</NButton>
+      <NButton type="info" @click="createShowed = true">Create</NButton>
+
+      <NModal v-model:show="createShowed">
+        <NCard title="Создать контакт" style="max-width: 60%" closable @close="createShowed = false">
+          <ContactForm />
+        </NCard>
+      </NModal>
 
       <NSelect
         class="header__select"

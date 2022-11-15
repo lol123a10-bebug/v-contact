@@ -6,9 +6,11 @@ type TContact = {
   tags: string[];
 };
 
+type TContactCreate = Omit<TContact, "id">;
+
 type TContactTag = {
   label: string;
   value: string;
 };
 
-export type { TContact, TContactTag };
+export type { TContact, TContactTag, TContactCreate };
